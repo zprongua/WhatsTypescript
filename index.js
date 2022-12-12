@@ -14,12 +14,13 @@ form.onsubmit = function (event) {
     fetch(url + text).then(function (data) {
         data.json().then(function (definition) {
             console.log(definition);
-            document.getElementById("word").innerHTML = definition[0].word + ' ' + definition[0].phonetics[0].text;
-            document.getElementById("definition1").innerHTML = definition[0].meanings[0].definitions[0].definition + '\n'
-                + definition[0].meanings[0].definitions[1].definition + '\n'
-                + definition[0].meanings[0].definitions[2].definition;
-            // document.getElementById("definition2").innerHTML = definition[0].meanings[0].definitions[1].definition;
-            // document.getElementById("definition3").innerHTML = definition[0].meanings[0].definitions[2].definition;
+            document.getElementById("word").innerHTML = definition[0].word;
+            document.getElementById("phonetic").innerHTML = definition[0].phonetics[0].text;
+            document.getElementById("definitions").setAttribute("class", "bg-secondary rounded text-bg-secondary p-3");
+            document.getElementById("definition1").innerHTML = definition[0].meanings[0].partOfSpeech + ': ' +
+                definition[0].meanings[0].definitions[0].definition;
+            document.getElementById("definition2").innerHTML = definition[0].meanings[1].partOfSpeech + ': ' +
+                definition[0].meanings[1].definitions[0].definition;
         });
     });
     // function getDefinition(): Promise<Define> {
